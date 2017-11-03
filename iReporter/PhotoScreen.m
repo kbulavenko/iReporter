@@ -7,7 +7,7 @@
 //
 
 #import "PhotoScreen.h"
-
+#import "API.h"
 
 @implementation PhotoScreen
 
@@ -19,7 +19,9 @@
     // Custom initialization
     self.navigationItem.rightBarButtonItem = btnAction;
     self.navigationItem.title = @"Post photo";
-    
+    if(![[API sharedInstance] isAuthorized]) {
+        [self performSegueWithIdentifier:@"ShowLogin" sender:nil];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
